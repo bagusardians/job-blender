@@ -9,4 +9,6 @@ public interface AddressService {
     List<String> getAllDepositAddresses();
 
     List<String> getUserAddresses(String depositAddress);
+
+    boolean isDepositAddressExist(String depositAddress);
 }

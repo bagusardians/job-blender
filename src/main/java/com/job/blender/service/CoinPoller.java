@@ -1,15 +1,23 @@
 package com.job.blender.service;
 
+import com.grack.nanojson.JsonParserException;
+
+import java.io.IOException;
+
 public class CoinPoller implements Runnable {
     private final PollService pollService;
 
-    public CoinPoller() {
-        this.pollService = null;
+    public CoinPoller(PollService pollService) {
+        this.pollService = pollService;
     }
 
     @Override
     public void run() {
         System.out.println("polling");
-        //pollService.poll();
+        try {
+            pollService.poll();
+        } catch (JsonParserException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }
