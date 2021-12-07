@@ -28,15 +28,18 @@ public class MixServiceImpl implements MixService {
 
 
     @Override
-    public void mix(List<Transaction> depositTransactions, String houseAddress) {
+    public boolean mix(List<Transaction> depositTransactions, String houseAddress) {
+        boolean isSuccessful = true;
         for(Transaction transaction : depositTransactions) {
             if (addressService.isDepositAddressExist(transaction.toAddress)) {
-                send(transaction.toAddress, houseAddress, transaction.amount);
+                boolean res = send(transaction.toAddress, houseAddress, transaction.amount);
+                isSuccessful = res && isSuccessful;
             }
         }
+        return isSuccessful;
     }
 
-    private void send(String fromAccount, String toAccount, BigDecimal amount) {
+    private boolean send(String fromAccount, String toAccount, BigDecimal amount) {
         String json = GSON.toJson(new Transaction(fromAccount, toAccount, amount));
         RequestBody requestBody = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
@@ -45,10 +48,10 @@ public class MixServiceImpl implements MixService {
                 .build();
 
         try (Response response = okHttpClient.newCall(request).execute()) {
-            String body = response.body().string();
-            JsonParser.object().from(body);
-        } catch (IOException | JsonParserException e) {
+            return response.isSuccessful();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 }

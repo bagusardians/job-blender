@@ -37,20 +37,24 @@ public class DoleServiceImpl implements DoleService {
     }
 
     @Override
-    public void dole(String houseAddress, BigDecimal amount, List<String> destinationAddresses) {
+    public void dole(BigDecimal amount, List<String> destinationAddresses) {
         BigDecimal finalAmount = feeService.collectFee(amount);
         BigDecimal roughAmount = finalAmount
-                .divide(BigDecimal.valueOf(destinationAddresses.size()), 0, RoundingMode.DOWN);
+                .divide(BigDecimal.valueOf(destinationAddresses.size()), 2, RoundingMode.DOWN);
 
         for (int i = 0; i < destinationAddresses.size(); i++) {
             String address = destinationAddresses.get(i);
             if (i < destinationAddresses.size() - 1) {
-                queue.add(new Transaction(houseAddress, address, roughAmount));
+                queue.add(new Transaction(config.houseAddress, address, roughAmount));
                 finalAmount = finalAmount.subtract(roughAmount);
             } else {
-                queue.add(new Transaction(houseAddress, address, finalAmount));
+                queue.add(new Transaction(config.houseAddress, address, finalAmount));
             }
         }
+    }
+
+    Queue<Transaction> getQueue() {
+        return queue;
     }
 
     private void pollAndSend() {

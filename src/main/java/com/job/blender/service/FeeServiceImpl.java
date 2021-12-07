@@ -15,7 +15,12 @@ public class FeeServiceImpl implements FeeService {
     public BigDecimal collectFee(BigDecimal originalAmount) {
         BigDecimal feesInDecimal = config.feesPercentage.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
         BigDecimal feesCollected = originalAmount.multiply(feesInDecimal);
-        cumulatedFees.add(feesCollected);
+        cumulatedFees = cumulatedFees.add(feesCollected);
         return originalAmount.subtract(feesCollected);
+    }
+
+    @Override
+    public BigDecimal getCumulatedFees() {
+        return cumulatedFees;
     }
 }

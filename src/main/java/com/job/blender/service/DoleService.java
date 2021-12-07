@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface DoleService {
 
-    void dole(String houseAddress, BigDecimal amount, List<String> destinationAddresses);
+    void dole(BigDecimal amount, List<String> destinationAddresses);
 }

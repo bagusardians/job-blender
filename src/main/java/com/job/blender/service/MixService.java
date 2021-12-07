@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface MixService {
 
-    void mix(List<Transaction> depositTransactions, String houseAddress);
+    boolean mix(List<Transaction> depositTransactions, String houseAddress);
 
 }

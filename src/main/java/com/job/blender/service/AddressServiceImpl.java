@@ -14,11 +14,6 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<String> getAllDepositAddresses() {
-        return db.values().stream().flatMap(List::stream).collect(Collectors.toList());
-    }
-
-    @Override
     public List<String> getUserAddresses(String depositAddress) {
         if (db.containsKey(depositAddress)) {
             return db.get(depositAddress);
