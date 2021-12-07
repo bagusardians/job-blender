@@ -54,8 +54,10 @@ public class DoleServiceImpl implements DoleService {
     }
 
     private void pollAndSend() {
-        Transaction toSend = queue.poll();
-        send(toSend);
+        if (queue.isEmpty()) {
+            return;
+        }
+        send(queue.poll());
     }
 
     private void send(Transaction transaction) {

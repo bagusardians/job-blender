@@ -13,7 +13,6 @@ public class CoinPoller implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("polling");
         try {
             pollService.poll();
         } catch (JsonParserException | IOException e) {
