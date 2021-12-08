@@ -21,8 +21,9 @@ A coin mixer is one way to maintain privacy in the network.
 
 ### How To
 - clone the repo
-- build the gradle
-- run the App.java (use Intellij IDEA is recommended)
+- `./gradlew build`
+- `./gradlew run`
+- or, you can use intellij or other IDE to run it, on the main class App.java
 - it will run a console app
 ![Alt text](image/option.png?raw=true "Option")
 - choose option 1
@@ -36,6 +37,7 @@ A coin mixer is one way to maintain privacy in the network.
 - refresh the page
 - you will see the transaction
 ![Alt text](image/transactions.png?raw=true "Transactions")
+- some fees will be deducted,it is inside the config.json
 - once you are done, choose option 2 in the console to exit
 ![Alt text](image/exit.png?raw=true "Exit")
 

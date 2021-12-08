@@ -43,10 +43,10 @@ public class MixServiceImplTest extends TestCase {
         server.shutdown();
     }
 
-    public void testMix_WithEmptyDepositTransaction_Failed() {
+    public void testMix_WithEmptyDepositTransaction_Success() {
         Config config = new Config("", "", "/any", BigDecimal.valueOf(10));
         MixService underTest = new MixServiceImpl(new OkHttpClient(), addressService, config);
         boolean result = underTest.mix(Collections.emptyList(), "home");
-        assertFalse(result);
+        assertTrue(result);
     }
 }

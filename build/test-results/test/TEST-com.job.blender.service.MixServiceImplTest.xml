@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.job.blender.service.MixServiceImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-12-08T00:50:29" hostname="yb.local" time="0.03">
+  <properties/>
+  <testcase name="testMix_WithEmptyDepositTransaction_Success" classname="com.job.blender.service.MixServiceImplTest" time="0.0"/>
+  <testcase name="testMix_WithDepositTransaction_Success" classname="com.job.blender.service.MixServiceImplTest" time="0.03"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
