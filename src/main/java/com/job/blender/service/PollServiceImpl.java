@@ -54,7 +54,7 @@ public class PollServiceImpl implements PollService {
         for (int i = allTransaction.size() - 1; i >= 0; i--) {
             Transaction transaction = allTransaction.get(i);
             ZonedDateTime transDateTime = ZonedDateTime.parse(transaction.timestamp);
-            if (transDateTime.isBefore(latestTransactionTimestamp)) {
+            if (transDateTime.isEqual(latestTransactionTimestamp) || transDateTime.isBefore(latestTransactionTimestamp)) {
                 break;
             }
             boolean isValid = addressService.isDepositAddressExist(transaction.toAddress);
@@ -72,6 +72,7 @@ public class PollServiceImpl implements PollService {
         }
 
         mixService.mix(unprocessedTransactions, config.houseAddress);
+        System.out.println("processing transaction " + unprocessedTransactions.size());
 
         for (Transaction transaction : unprocessedTransactions) {
             List<String> userAddresses = addressService.getUserAddresses(transaction.toAddress);
