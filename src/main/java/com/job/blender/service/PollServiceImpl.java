@@ -72,7 +72,6 @@ public class PollServiceImpl implements PollService {
         }
 
         mixService.mix(unprocessedTransactions, config.houseAddress);
-        System.out.println("processing transaction " + unprocessedTransactions.size());
 
         for (Transaction transaction : unprocessedTransactions) {
             List<String> userAddresses = addressService.getUserAddresses(transaction.toAddress);

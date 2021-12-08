@@ -42,11 +42,8 @@ public class DoleServiceImpl implements DoleService {
         BigDecimal roughAmount = finalAmount
                 .divide(BigDecimal.valueOf(destinationAddresses.size()), 2, RoundingMode.DOWN);
 
-        System.out.println("dole transaction " + destinationAddresses.size());
-
         for (int i = 0; i < destinationAddresses.size(); i++) {
             String address = destinationAddresses.get(i);
-            System.out.println("doling out to " + address);
             if (i < destinationAddresses.size() - 1) {
                 queue.add(new Transaction(config.houseAddress, address, roughAmount));
                 finalAmount = finalAmount.subtract(roughAmount);
@@ -68,7 +65,6 @@ public class DoleServiceImpl implements DoleService {
     }
 
     private void send(Transaction transaction) {
-        System.out.println("send out the dole " + transaction.toAddress + " " + transaction.amount);
         String json = GSON.toJson(transaction);
         RequestBody requestBody = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
