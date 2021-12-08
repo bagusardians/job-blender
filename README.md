@@ -22,7 +22,7 @@ A coin mixer is one way to maintain privacy in the network.
 ### How To
 - clone the repo
 - build the gradle
-- run the App.java
+- run the App.java (use Intellij IDEA is recommended)
 - it will run a console app
 ![Alt text](image/option.png?raw=true "Option")
 - choose option 1

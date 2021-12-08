@@ -1,7 +1,5 @@
 package com.job.blender.service;
 
-import com.grack.nanojson.JsonParserException;
-
 import java.io.IOException;
 
 public class CoinPoller implements Runnable {
@@ -15,7 +13,7 @@ public class CoinPoller implements Runnable {
     public void run() {
         try {
             pollService.poll();
-        } catch (JsonParserException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -1,8 +1,6 @@
 package com.job.blender.service;
 
 import com.google.gson.Gson;
-import com.grack.nanojson.JsonParser;
-import com.grack.nanojson.JsonParserException;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -73,9 +71,8 @@ public class DoleServiceImpl implements DoleService {
                 .build();
 
         try (Response response = okHttpClient.newCall(request).execute()) {
-            String body = response.body().string();
-            JsonParser.object().from(body);
-        } catch (IOException | JsonParserException e) {
+            response.body().string();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
