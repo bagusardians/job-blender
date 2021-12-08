@@ -24,14 +24,20 @@ A coin mixer is one way to maintain privacy in the network.
 - build the gradle
 - run the App.java
 - it will run a console app
+![Alt text](image/option.png?raw=true "Option")
 - choose option 1
 - put in your address, comma separated
+![Alt text](image/insert_address.png?raw=true "Input")
 - it will return the deposit address
+![Alt text](image/deposit_address.png?raw=true "Deposit")
 - go to https://jobcoin.gemini.com/crushed-cassette
 - try to send some coin to that deposit address
 - wait for 10-15 second
 - refresh the page
 - you will see the transaction
+![Alt text](image/transactions.png?raw=true "Transactions")
+- once you are done, choose option 2 in the console to exit
+![Alt text](image/exit.png?raw=true "Exit")
 
 ### Logic
 - the system will do polling every 5 second and call the all transactions API
@@ -54,3 +60,4 @@ A coin mixer is one way to maintain privacy in the network.
 - currently the system is calling the all transaction api, after some time it will be too big
 - need to have a pagination api to only call the recent one that we want based on time
 - or might move to other api based on deposit address that the system own, even though the time taken to call the api needs to be calculated.
+- also, need to add logging for better tracing
